@@ -1,7 +1,8 @@
 import os
 
 # This imports Flask (The capital F is important as it is a class).
-from flask import Flask
+# render_template allows flask to read in files inside templates folder.
+from flask import Flask, render_template
 
 # This is creating an instance of the Flask import and storing it in "app".
 # __name__ is a built in python varible needs this so it knows where to look
@@ -15,7 +16,7 @@ app = Flask(__name__)
 # indicated by route("/").
 @app.route("/")
 def index():
-    return "Hello, World"
+    return render_template("index.html")
 
 
 # This runs the app with the following arguments.
@@ -29,5 +30,6 @@ if __name__ == "__main__":
         port=int(os.environ.get("PORT", "5000")),
         # This will allow me to debug my code easier during devlop stage.
         # Never leave this in final code, This allows arbatrary code to run.
+        # Set to False before submitting code!
         debug=True
         )
