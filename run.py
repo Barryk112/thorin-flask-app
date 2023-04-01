@@ -12,11 +12,20 @@ app = Flask(__name__)
 
 # This is a python decorator, all python decorators start with @app.
 # A decorator is a way of wrapping functions.
-# When trying to go to the route directory the function is triggered as
-# indicated by route("/").
+# This links my HTML pages
 @app.route("/")
 def index():
     return render_template("index.html")
+
+
+@app.route("/about")
+def about():
+    return render_template("about.html")
+
+
+@app.route("/contact")
+def contact():
+    return render_template("contact.html")
 
 
 # This runs the app with the following arguments.
