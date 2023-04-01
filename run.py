@@ -28,6 +28,11 @@ def contact():
     return render_template("contact.html")
 
 
+@app.route("/careers")
+def careers():
+    return render_template("careers.html")
+
+
 # This runs the app with the following arguments.
 # __main__ is the name of the default madual in python.
 if __name__ == "__main__":

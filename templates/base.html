@@ -1,0 +1,32 @@
+<!-- This base.html file is inside the templates folder because 
+    thats how the Flask app can read in the file, this base file
+    is the template for my other pages -->
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Hello Flask</title>
+    </head>
+    <body>
+        
+        <nav>
+            <ul>
+                <!-- This is how you link using Flask app, this is linked with the @app.route in run.py -->
+            <li><a href="{{ url_for('index') }}">Home</a></li>
+            <li><a href="{{ url_for('about') }}">About</a></li>
+            <li><a href="{{ url_for('contact') }}">Contact</a></li>
+            <li><a href="{{ url_for('careers') }}">Careers</a></li>
+            </ul>
+        </nav>
+        
+        <!-- This is the template for all my other html pages, there content would go in between
+            this block of coode -->
+        {% block content %}
+
+        {% endblock %}
+
+
+    </body>
+    </html>
