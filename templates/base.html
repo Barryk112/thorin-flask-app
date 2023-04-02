@@ -7,11 +7,15 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!-- This links my bootstrap css file, and then I just use the classes provided :) -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/clean-blog.min.css')}}">
+
         <title>Hello Flask</title>
     </head>
     <body>
         
-        <nav>
+        <nav class="navbar">
             <ul>
                 <!-- This is how you link using Flask app, this is linked with the @app.route in run.py -->
             <li><a href="{{ url_for('index') }}">Home</a></li>
