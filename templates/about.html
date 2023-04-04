@@ -2,6 +2,7 @@
     thats how the Flask app can read in the file -->
 
 <!-- This is using base.html as the template for this page -->
+<!-- The { } is the jinja template language -->
 {% extends "base.html" %}
 {% block content %}
 
@@ -17,21 +18,47 @@
         business, welcomed a fourteenth to fill into their party.
     </p>
 
+    <!-- This populates my about page with the data provided in company.json and uses a loop to iterate threw the data.
+    and that data being stored in 'company' that was imported in run.py -->
     {% for member in company %}
-
+        
         <div class="row featurette">
-            <div class="col-md-7">
-                <h3>{{ member.name }}</h3>
-                <p>
-                    {{ member.description }}
-                </p>
-            </div>
-            <div class="col-md-5">
-                <img src="{{ member.image_source }}" alt="" class="featurette-image image-responsive">
-            </div>
+
+            <!-- loops threw and displays odd number index on right and even on left -->
+            {% if loop.index % 2 != 0 %}
+
+                <div class="col-md-7">
+                    <h3>{{ loop.index }}.{{ member.name }}</h3>
+                    <p>
+                        {{ member.description }}
+                    </p>
+                </div>
+                <div class="col-md-5">
+                    <img src="{{ member.image_source }}" alt="" class="featurette-image image-responsive">
+                </div>
+
+            {% else %}
+
+                <div class="col-md-5">
+                    <img src="{{ member.image_source }}" alt="" class="featurette-image image-responsive">
+                </div>
+                <div class="col-md-7">
+                    <h3>{{ loop.index }}.{{ member.name }}</h3>
+                    <p>
+                        {{ member.description }}
+                    </p>
+                </div>
+
+            {% endif %}
+
         </div>
 
-        <hr class="featurette-divider">
+        <!-- This stops a hr showing on the last item -->
+        {% if loop.index != loop.length %}
+
+            <hr class="featurette-divider">
+
+        {% endif %}
 
     {% endfor %}
 {% endblock %}
