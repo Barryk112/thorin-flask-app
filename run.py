@@ -1,5 +1,7 @@
 import os
 
+import json
+
 # This imports Flask (The capital F is important as it is a class).
 # render_template allows flask to read in files inside templates folder.
 from flask import Flask, render_template
@@ -20,17 +22,23 @@ def index():
 
 @app.route("/about")
 def about():
-    return render_template("about.html")
+    data = []
+    # This is opening compnay.json as read only ("r")
+    # and storing it inside json_data then loading it into the data var
+    with open("data/company.json", "r") as json_data:
+        data = json.load(json_data)
+    # The arguments allows to pass data in
+    return render_template("about.html", page_title="About", company=data)
 
 
 @app.route("/contact")
 def contact():
-    return render_template("contact.html")
+    return render_template("contact.html", page_title="Contact")
 
 
 @app.route("/careers")
 def careers():
-    return render_template("careers.html")
+    return render_template("careers.html", page_title="Careers")
 
 
 # This runs the app with the following arguments.
