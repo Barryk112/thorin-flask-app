@@ -4,12 +4,20 @@ import json
 
 # This imports Flask (The capital F is important as it is a class).
 # render_template allows flask to read in files inside templates folder.
-from flask import Flask, render_template
+# Request allows POST & GET methods (and more)
+# Flash diplays something one screen untill off page
+from flask import Flask, render_template, request, flash
+
+if os.path.exists("env.py"):
+    import env
 
 # This is creating an instance of the Flask import and storing it in "app".
 # __name__ is a built in python varible needs this so it knows where to look
 # for templates ect
 app = Flask(__name__)
+
+# Gets secret key in env.py(this is hidden by gitignore)
+app.secret_key = os.environ.get("SECRET_KEY")
 
 
 # This is a python decorator, all python decorators start with @app.
@@ -44,8 +52,11 @@ def about_member(member_name):
     return render_template("member.html", member=member)
 
 
-@app.route("/contact")
+@app.route("/contact", methods=["GET", "POST"])
 def contact():
+    if request.method == "POST":
+        flash("Thanks {}, we have received your message!".format(
+            request.form.get("name")))
     return render_template("contact.html", page_title="Contact")
 
 
